@@ -7,6 +7,21 @@
   height: 100vh;
   background-color: #111;
 }
+.button_div{
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  text-align: center;
+}
+.logOutFunc{
+  font-size: 1.4rem;
+  margin: 0 0.5rem;
+  background: none;
+  outline: none;
+  color: red;
+  border: 2px solid white;
+  cursor: pointer;
+}
 h1{
   font-size:3rem;
   font-weight: 50;
