@@ -2,6 +2,8 @@ import react, { useEffect, useState } from 'react';
 import './App.css';
 import { auth, database, firebase } from './firebase'
 import { useHistory } from "react-router-dom";
+import ScaleLoader from "react-spinners/ScaleLoader";
+
 
 function TodoList(props) {
     const [uid, setUid] = useState()
@@ -10,6 +12,9 @@ function TodoList(props) {
     const [items, setItems] = useState([])
     const [toggleSubmit, setToggleSubmit] = useState(true);
     const [updateKey, setUpdateKey] = useState()
+    const [delButton, setdelButton] = useState(false)
+    const [loading, setLoading] = useState(true);
+
     const history = useHistory();
     useEffect(() => {
         return auth.onAuthStateChanged(user => {
@@ -33,6 +38,9 @@ function TodoList(props) {
     }
     const itemEvent = (event) => {
         setInputList(event.target.value);
+        if (inputList.length >= 20) {
+            alert("Please Fill 20 words or below!!!!")
+        }
     }
 
     const listOfItems = (user) => {
@@ -51,6 +59,7 @@ function TodoList(props) {
 
 
     useEffect(() => {
+        setLoading(true)
         database
             .ref("/Todo/" + uid)
             .on("value", (snapshot) => {
@@ -59,6 +68,7 @@ function TodoList(props) {
                 if (snapshot.exists()) {
                     console.log("snapshot1===>", snapshot.val());
                     setItems(data);
+                    setLoading(false)
 
 
                 } else {
@@ -75,6 +85,7 @@ function TodoList(props) {
         console.log(todo, "todo")
         setToggleSubmit(false)
         setInputList(todo)
+        setdelButton(true)
         setUpdateKey(userkey)
 
 
@@ -90,6 +101,8 @@ function TodoList(props) {
         )
         setToggleSubmit(true)
         setInputList("")
+        setdelButton(false)
+
     }
 
 
@@ -99,37 +112,46 @@ function TodoList(props) {
     console.log("snapshot===>", items);
 
     return (
-        <div className="body">
-            <div className='button_div'>
-                <button className="logOutFunc" onClick={logOutButton}>LogOut</button>
-            </div>
-            <h1><span className="styling">TODO</span>LIST</h1>
-            <div className="input_div">
-                <input className="input" required type="text" placeholder="What do you want to do?" onChange={itemEvent} value={inputList} />
-                {
-                    toggleSubmit ? <button className="addButton" onClick={() => listOfItems(props.user)}><i className="fa fa-plus"></i>+</button> :
-                        <button className="editButton" onClick={() => updateButton(items[updateKey].inputList)}>Update</button>
+        <div className="loader">
+            {
+                loading ? <ScaleLoader
+                    color={"#B6AB1D"}
+                    loading={loading}
+                    size={200}
+                /> :
+                    <div className="body">
+                        <div className='button_div'>
+                            <button className="logOutFunc" onClick={logOutButton}>LogOut</button>
+                        </div>
+                        <h1><span className="styling">TODO</span>LIST</h1>
+                        <div className="input_div">
+                            <input className="input" required type="text" maxLength="20" placeholder="What do you want to do?" onChange={itemEvent} value={inputList} />
+                            {
+                                toggleSubmit ? <button className="addButton" onClick={() => listOfItems(props.user)}><i className="fa fa-plus"></i>+</button> :
+                                    <button className="editButton" onClick={() => updateButton(items[updateKey].inputList)}>Update</button>
 
-                }
+                            }
 
-            </div>
-            <div className="container">
-                <ol>
-                    {!!Object.keys(items).length && Object.keys(items).map((chabi) => {
-                        return <li >
-                            <div className="item">
-                                <div className="item_input"   >{items[chabi].inputList}</div>
-                                < button className="editButton" onClick={() => editButton(chabi,
-                                    items[chabi].inputList
-                                )}>EDIT</button>
-                                <button className="removeButton" onClick={() => removeButton(chabi)}>DELETE</button>
-                            </div>
-                        </li>
-                    })}
-                </ol>
+                        </div>
+                        <div className="container">
+                            <ol>
+                                {!!Object.keys(items).length && Object.keys(items).map((chabi) => {
+                                    return <li >
+                                        <div className="item">
+                                            <div className="item_input"   >{items[chabi].inputList}</div>
+                                            < button className="editButton" onClick={() => editButton(chabi,
+                                                items[chabi].inputList
+                                            )}>EDIT</button>
+                                            <button className="removeButton" disabled={delButton} onClick={() => removeButton(chabi)}>DELETE</button>
+                                        </div>
+                                    </li>
+                                })}
+                            </ol>
 
 
-            </div>
+                        </div>
+                    </div>
+            }
 
         </div >
     );

@@ -4,16 +4,18 @@ import "./login.css"
 import { useHistory } from "react-router-dom";
 import { auth, database } from "./firebase";
 import validation from "./validation";
+import ScaleLoader from "react-spinners/ScaleLoader";
+
 
 
 const Login = () => {
-    // const [email, setEmail] = useState()
-    // const [password, setPassword] = useState()
     const [values, setValues] = useState({
         email: "",
         password: ""
     })
     const [errors, setErrors] = useState({})
+    let [loading, setLoading] = useState(false);
+
     const history = useHistory();
 
     useEffect(() => {
@@ -38,6 +40,7 @@ const Login = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         setErrors(validation(values));
+        setLoading(true)
         auth.signInWithEmailAndPassword(values.email, values.password).then((res) => {
             console.log("response==>", auth.currentUser.uid)
             database.ref("/USR").child("/users" + "/" + auth.currentUser.uid)
@@ -45,6 +48,7 @@ const Login = () => {
                     const users = snapshot.val();
                     console.log("user===>", users)
                     history.push("/")
+                    setLoading(false)
                 })
         })
 
@@ -55,7 +59,7 @@ const Login = () => {
             <h2 >Please Login!!</h2>
             <form onSubmit={(e) => handleSubmit(e)}>
                 <div className="input1_div1">
-                    <input className="input1" type="text" placeholder="Username" onChange={handleChange} value={values.email} name="email" />
+                    <input className="input1" type="text" placeholder="Email" onChange={handleChange} value={values.email} name="email" />
                 </div>
                 {errors.email && <h6>{errors.email}</h6>}
                 <div className="inputs_div1">
@@ -63,10 +67,16 @@ const Login = () => {
                 </div>
                 {errors.password && <h6>{errors.password}</h6>}
                 <div className="button_div1">
-                    <button type="submit" className="loginButton">LOGIN</button>
+                    {
+                        loading ? <ScaleLoader
+                            color={"#B6AB1D"}
+                            loading={loading}
+                            size={30} /> : <button type="submit" className="loginButton">LOGIN</button>
+                    }
                 </div>
             </form >
             <div className="para_div1">
+
                 <p className="para1">don't have account Please!! <Link to="/signUp">SignUp </Link> </p>
             </div>
         </div>

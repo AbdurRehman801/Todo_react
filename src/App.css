@@ -3,13 +3,23 @@
   padding: 0;
   box-sizing: border-box;
 }
+.loader{
+  text-align: center;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+}
 .body{
   height: 100vh;
-  background-color: #111;
+  background-color: black;
+  
 }
 .button_div{
   display: flex;
-  justify-content: right;
+  justify-content: center;
   align-items: center;
   text-align: center;
 }
