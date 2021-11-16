@@ -17,6 +17,7 @@ const SignUp = () => {
     })
     const [errors, setErrors] = useState({})
     let [loading, setLoading] = useState(false);
+    const [mass, setMass] = useState()
 
     const handleChange = (e) => {
         setErrors(validation(values));
@@ -42,7 +43,11 @@ const SignUp = () => {
                     }).then(() => console.log("user added successfully")).catch((err) => console.log(err))
                 setLoading(false)
             })
-            .catch(err => alert(err.message))
+            .catch((err) => {
+                // alert(err.message)
+                setMass(err.message)
+                setLoading(false)
+            })
     };
     return (
         <div className="loginbody">
@@ -53,25 +58,31 @@ const SignUp = () => {
                     <input className="input" maxLength="10" type="text" placeholder="FirstName" onChange={handleChange} value={values.firstName} name="firstName" />
                     <input className="input" maxLength="10" type="text" placeholder="LastName" onChange={handleChange} value={values.lastName} name="lastName" />
                 </div>
-                {errors.firstName && <h6>{errors.firstName}</h6>}
-                {errors.lastName && <h6>{errors.lastName}</h6>}
+                {errors.firstName && <p className="error1">{errors.firstName}</p>}  {errors.lastName && <p className="error2">{errors.lastName}</p>}
+
                 <div className="mail_div2">
                     <input className="mail2" maxLength="30" type="text" placeholder="Email" onChange={handleChange} value={values.email} name="email" />
                 </div>
-                {errors.email && <h6>{errors.email}</h6>}
+                {errors.email && <p className="error3">{errors.email}</p>}
                 <div className="pass_div">
                     <input className="pass" maxLength="20" type="password" placeholder="Password" onChange={handleChange} value={values.password} name="password" />
                 </div>
-                {errors.password && <h6>{errors.password}</h6>}
+                {errors.password && <p className="error4">{errors.password}</p>}
                 <div className="buttons_div">
-                    {
+
+                    <button type="submit" className="signButton">{
                         loading ? <ScaleLoader
-                            color={"#B6AB1D"}
+                            color={"#0D0DAF"}
                             loading={loading}
-                            size={30} /> : <button type="submit" className="signButton">SignUp</button>
-                    }
+                            height={"13"} /> :
+                            "SignUp"}</button>
                 </div>
+                <p className="error8">{mass}</p>
             </form >
+            <div className="para_div2">
+
+                <p className="para2">Go Back to Login!!! <Link to="/login">Login </Link> </p>
+            </div>
 
         </div>
     )

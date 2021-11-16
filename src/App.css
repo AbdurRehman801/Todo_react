@@ -68,8 +68,8 @@ h1{
   border-radius: 25px;
   outline: none;
   border: none;
-  background-color: #fff;
-  color: #fff;
+  /* background-color: #fff; */
+  /* color: #fff; */
   margin: 0.25rem;
   background-color: lime;
   cursor: pointer;
@@ -110,6 +110,7 @@ h1{
   outline: none;
   color: lime;
   border: none;
+  cursor: pointer;
 }
 
 .removeButton{
@@ -119,6 +120,7 @@ h1{
   outline: none;
   color: #E00;
   border: none;
+  cursor: pointer;
 }
 .modal{
   position: absolute;

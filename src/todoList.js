@@ -3,28 +3,31 @@ import './App.css';
 import { auth, database, firebase } from './firebase'
 import { useHistory } from "react-router-dom";
 import ScaleLoader from "react-spinners/ScaleLoader";
+import { VscAdd } from 'react-icons/vsc';
+
 
 
 function TodoList(props) {
     const [uid, setUid] = useState()
-    // console.log("userid", uid)
     const [inputList, setInputList] = useState("");
     const [items, setItems] = useState([])
     const [toggleSubmit, setToggleSubmit] = useState(true);
     const [updateKey, setUpdateKey] = useState()
     const [delButton, setdelButton] = useState(false)
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
 
     const history = useHistory();
     useEffect(() => {
+        setLoading(true)
         return auth.onAuthStateChanged(user => {
-            console.log("appuser==>", user)
             if (user) {
                 console.log("user if", user)
                 setUid(user.uid)
+                setLoading(false)
             }
             else {
                 console.log("user else", history)
+                history.push("/login")
             }
 
         })
@@ -43,9 +46,9 @@ function TodoList(props) {
         }
     }
 
-    const listOfItems = (user) => {
+    const listOfItems = (e) => {
+        e.preventDefault()
         if (inputList) {
-            console.log("todouser", uid)
             const todoRef = database.ref("/Todo/" + uid);
             const todo = {
                 inputList,
@@ -63,26 +66,22 @@ function TodoList(props) {
         database
             .ref("/Todo/" + uid)
             .on("value", (snapshot) => {
-                // console.log("snapshot1===>", user);
                 let data = snapshot.val();
                 if (snapshot.exists()) {
-                    console.log("snapshot1===>", snapshot.val());
                     setItems(data);
                     setLoading(false)
 
 
                 } else {
                     setItems([]);
+                    setLoading(false)
                 }
             });
     }, [uid]);
-    console.log("items==>", items)
     const removeButton = (userkey) => {
-        console.log("userkey==", userkey);
         database.ref("/Todo/" + uid + "/" + userkey).remove();
     }
     const editButton = (userkey, todo) => {
-        console.log(todo, "todo")
         setToggleSubmit(false)
         setInputList(todo)
         setdelButton(true)
@@ -93,7 +92,6 @@ function TodoList(props) {
 
     }
     const updateButton = (userkey, todo) => {
-        console.log("update", updateKey)
         database.ref("/Todo/" + uid).child(updateKey).update(
             {
                 inputList: inputList
@@ -107,9 +105,7 @@ function TodoList(props) {
 
 
 
-    console.log("toggle", toggleSubmit)
 
-    console.log("snapshot===>", items);
 
     return (
         <div className="loader">
@@ -119,20 +115,20 @@ function TodoList(props) {
                     loading={loading}
                     size={200}
                 /> :
-                    <div className="body">
+                    < div className="body">
                         <div className='button_div'>
                             <button className="logOutFunc" onClick={logOutButton}>LogOut</button>
                         </div>
                         <h1><span className="styling">TODO</span>LIST</h1>
-                        <div className="input_div">
-                            <input className="input" required type="text" maxLength="20" placeholder="What do you want to do?" onChange={itemEvent} value={inputList} />
+                        <form className="input_div" onSubmit={listOfItems}>
+                            <input className="input" type="text" maxLength="20" placeholder="What do you want to do?" onChange={itemEvent} value={inputList} />
                             {
-                                toggleSubmit ? <button className="addButton" onClick={() => listOfItems(props.user)}><i className="fa fa-plus"></i>+</button> :
+                                toggleSubmit ? <button type="submit" className="addButton" > <VscAdd /> </button> :
                                     <button className="editButton" onClick={() => updateButton(items[updateKey].inputList)}>Update</button>
 
                             }
 
-                        </div>
+                        </form>
                         <div className="container">
                             <ol>
                                 {!!Object.keys(items).length && Object.keys(items).map((chabi) => {

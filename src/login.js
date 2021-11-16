@@ -15,15 +15,15 @@ const Login = () => {
     })
     const [errors, setErrors] = useState({})
     let [loading, setLoading] = useState(false);
+    const [errmessage, seterrmessage] = useState()
 
     const history = useHistory();
 
-    useEffect(() => {
-        return auth.onAuthStateChanged(user => {
-            console.log("appuser==>", user)
+    useEffect(async () => {
+
+        await auth.onAuthStateChanged(user => {
             if (user) {
                 history.push("/")
-                console.log("user if", user)
             }
 
         })
@@ -37,19 +37,17 @@ const Login = () => {
         })
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setErrors(validation(values));
         setLoading(true)
-        auth.signInWithEmailAndPassword(values.email, values.password).then((res) => {
-            console.log("response==>", auth.currentUser.uid)
-            database.ref("/USR").child("/users" + "/" + auth.currentUser.uid)
-                .once("value").then((snapshot) => {
-                    const users = snapshot.val();
-                    console.log("user===>", users)
-                    history.push("/")
-                    setLoading(false)
-                })
+        await auth.signInWithEmailAndPassword(values.email, values.password).then((res) => {
+            history.push("/")
+            setLoading(false)
+        }).catch((err) => {
+            // alert(err.message)
+            seterrmessage(err.message)
+            setLoading(false)
         })
 
     }
@@ -61,23 +59,25 @@ const Login = () => {
                 <div className="input1_div1">
                     <input className="input1" type="text" placeholder="Email" onChange={handleChange} value={values.email} name="email" />
                 </div>
-                {errors.email && <h6>{errors.email}</h6>}
+                {errors.email && <p className="error5">{errors.email}</p>}
                 <div className="inputs_div1">
                     <input className="inputs" type="password" placeholder="Password" onChange={handleChange} value={values.password} name="password" />
                 </div>
-                {errors.password && <h6>{errors.password}</h6>}
+                {errors.password && <p className="error6">{errors.password}</p>}
                 <div className="button_div1">
-                    {
+
+                    <button type="submit" className="loginButton">{
                         loading ? <ScaleLoader
-                            color={"#B6AB1D"}
+                            color={"#0D0DAF"}
                             loading={loading}
-                            size={30} /> : <button type="submit" className="loginButton">LOGIN</button>
-                    }
+                            height={"13"} /> :
+                            "LOGIN"}</button>
                 </div>
+                <p className="error7">{errmessage}</p>
             </form >
             <div className="para_div1">
 
-                <p className="para1">don't have account Please!! <Link to="/signUp">SignUp </Link> </p>
+                <p className="para1">Don't have account Please!! <Link to="/signUp">SignUp </Link> </p>
             </div>
         </div>
     )

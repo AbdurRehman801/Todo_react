@@ -99,3 +99,38 @@ h6{
   color: red;
   text-align: center;
 }
+.para_div2{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.para_div2 .para2{
+  margin-top: 20px;
+  color: white;
+  font-weight: 800;
+}
+.error1{
+  color: red;
+  margin-left: 470px;
+  display: inline;
+}
+.error2{
+  color: red;
+  display: inline;
+  margin-left: 70px;
+}
+.error3{
+  color: red;
+  margin-left: 470px;
+  display: inline;
+}
+.error4{
+  color: red;
+  margin-left: 470px;
+  display: inline;
+}
+.error8{
+  color: red;
+  text-align: center;
+}

@@ -50,8 +50,8 @@ function App() {
               </Route> */}
               </> : <>
                 <Route path="*" ><Redirect to="/Login" /> </Route>
-                <Route path="/Login" component={Login} />
-                <Route path="/signUp">
+                <Route exact path="/Login" component={Login} />
+                <Route exact path="/signUp">
                   <SignUp />
                 </Route></>
             }
