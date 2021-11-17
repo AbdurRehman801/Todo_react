@@ -20,6 +20,8 @@ const validation = (values) => {
     } else if (values.password.length > 10) {
         errors.password = "Password must be less than 10 character"
     }
+
+    
     return errors;
 }
 export default validation;

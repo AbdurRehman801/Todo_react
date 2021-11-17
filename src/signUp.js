@@ -58,16 +58,21 @@ const SignUp = () => {
                     <input className="input" maxLength="10" type="text" placeholder="FirstName" onChange={handleChange} value={values.firstName} name="firstName" />
                     <input className="input" maxLength="10" type="text" placeholder="LastName" onChange={handleChange} value={values.lastName} name="lastName" />
                 </div>
+                <div className="errordiv1">
                 {errors.firstName && <p className="error1">{errors.firstName}</p>}  {errors.lastName && <p className="error2">{errors.lastName}</p>}
-
+                </div>
                 <div className="mail_div2">
                     <input className="mail2" maxLength="30" type="text" placeholder="Email" onChange={handleChange} value={values.email} name="email" />
                 </div>
+                <div className="errordiv3">
                 {errors.email && <p className="error3">{errors.email}</p>}
+                </div>
                 <div className="pass_div">
                     <input className="pass" maxLength="20" type="password" placeholder="Password" onChange={handleChange} value={values.password} name="password" />
                 </div>
+                <div className="errordiv4">
                 {errors.password && <p className="error4">{errors.password}</p>}
+                </div>
                 <div className="buttons_div">
 
                     <button type="submit" className="signButton">{

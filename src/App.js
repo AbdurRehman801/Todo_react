@@ -12,8 +12,10 @@ import store from './redux/store'
 
 
 
+
 function App() {
   const [user, setUser] = useState(null)
+  
   const history = useHistory()
 
 
@@ -23,12 +25,10 @@ function App() {
     return auth.onAuthStateChanged(user => {
       console.log("appuser==>", user)
       if (user) {
-        console.log("user if", user)
 
         setUser(user)
       }
       else {
-        console.log("user else", history)
         setUser(null)
 
       }
@@ -40,6 +40,7 @@ function App() {
   return (
     <div>
       <Provider store={store}>
+   
         <BrowserRouter>
           <Switch>
             {!!user ?
@@ -49,15 +50,14 @@ function App() {
                 <TodoList user={user} />
               </Route> */}
               </> : <>
-                <Route path="*" ><Redirect to="/Login" /> </Route>
                 <Route exact path="/Login" component={Login} />
-                <Route exact path="/signUp">
-                  <SignUp />
-                </Route></>
+                <Route exact path="/signUp" component={SignUp}/>
+                <Route path="*" /><Redirect to="/Login" /> </>
             }
 
           </Switch>
         </BrowserRouter>
+        
       </Provider>
     </div >
   );

@@ -1,156 +1,167 @@
-import react, { useEffect, useState } from 'react';
-import './App.css';
-import { auth, database, firebase } from './firebase'
+import react, { useEffect, useState } from "react";
+import "./App.css";
+import { auth, database, firebase } from "./firebase";
 import { useHistory } from "react-router-dom";
 import ScaleLoader from "react-spinners/ScaleLoader";
-import { VscAdd } from 'react-icons/vsc';
-
-
+import { VscAdd } from "react-icons/vsc";
 
 function TodoList(props) {
-    const [uid, setUid] = useState()
-    const [inputList, setInputList] = useState("");
-    const [items, setItems] = useState([])
-    const [toggleSubmit, setToggleSubmit] = useState(true);
-    const [updateKey, setUpdateKey] = useState()
-    const [delButton, setdelButton] = useState(false)
-    const [loading, setLoading] = useState(false);
+  const [uid, setUid] = useState();
+  const [inputList, setInputList] = useState("");
+  const [items, setItems] = useState([]);
+  const [toggleSubmit, setToggleSubmit] = useState(true);
+  const [updateKey, setUpdateKey] = useState();
+  const [delButton, setdelButton] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState();
 
-    const history = useHistory();
-    useEffect(() => {
-        setLoading(true)
-        return auth.onAuthStateChanged(user => {
-            if (user) {
-                console.log("user if", user)
-                setUid(user.uid)
-                setLoading(false)
-            }
-            else {
-                console.log("user else", history)
-                history.push("/login")
-            }
+  const history = useHistory();
+  useEffect(() => {
+    setLoading(true);
+    return auth.onAuthStateChanged((user) => {
+      if (user) {
+        setUid(user.uid);
+        setLoading(false);
+      } else {
+        history.push("/login");
+        setLoading(false);
+      }
+    });
+  }, []);
 
-        })
+  const logOutButton = () => {
+    auth.signOut();
+    history.push("/login");
+  };
+  const itemEvent = (event) => {
+    setInputList(event.target.value);
+    setError("");
+  };
 
-    }, [])
+  const listOfItems = (e) => {
+    e.preventDefault();
 
-
-    const logOutButton = () => {
-        auth.signOut();
-        history.push("/login")
+    if (inputList) {
+      const todoRef = database.ref("/Todo/" + uid);
+      const todo = {
+        inputList,
+      };
+      todoRef.push(todo);
+      setInputList("");
+    } else if (inputList === "") {
+      setError("Please fill up the TODO!!!!");
     }
-    const itemEvent = (event) => {
-        setInputList(event.target.value);
-        if (inputList.length >= 20) {
-            alert("Please Fill 20 words or below!!!!")
-        }
-    }
+  };
 
-    const listOfItems = (e) => {
-        e.preventDefault()
-        if (inputList) {
-            const todoRef = database.ref("/Todo/" + uid);
-            const todo = {
-                inputList,
-            };
-            todoRef.push(todo);
-            setInputList("")
-        } else if (inputList === "") {
-            alert("Please fill the TODO!!!")
-        }
-    }
+  useEffect(() => {
+    setLoading(true);
+    database.ref("/Todo/" + uid).on("value", (snapshot) => {
+      let data = snapshot.val();
+      if (snapshot.exists()) {
+        setItems(data);
+        setLoading(false);
+      } else {
+        setItems([]);
+        setLoading(false);
+      }
+    });
+  }, [uid]);
+  const removeButton = (userkey) => {
+    database.ref("/Todo/" + uid + "/" + userkey).remove();
+  };
+  const editButton = (userkey, todo) => {
+    setToggleSubmit(false);
+    setInputList(todo);
+    setdelButton(true);
+    setUpdateKey(userkey);
+  };
+  const updateButton = (userkey, todo) => {
+    database
+      .ref("/Todo/" + uid)
+      .child(updateKey)
+      .update({
+        inputList: inputList,
+      });
+    setToggleSubmit(true);
+    setInputList("");
+    setdelButton(false);
+  };
 
-
-    useEffect(() => {
-        setLoading(true)
-        database
-            .ref("/Todo/" + uid)
-            .on("value", (snapshot) => {
-                let data = snapshot.val();
-                if (snapshot.exists()) {
-                    setItems(data);
-                    setLoading(false)
-
-
-                } else {
-                    setItems([]);
-                    setLoading(false)
-                }
-            });
-    }, [uid]);
-    const removeButton = (userkey) => {
-        database.ref("/Todo/" + uid + "/" + userkey).remove();
-    }
-    const editButton = (userkey, todo) => {
-        setToggleSubmit(false)
-        setInputList(todo)
-        setdelButton(true)
-        setUpdateKey(userkey)
-
-
-
-
-    }
-    const updateButton = (userkey, todo) => {
-        database.ref("/Todo/" + uid).child(updateKey).update(
-            {
-                inputList: inputList
-            }
-        )
-        setToggleSubmit(true)
-        setInputList("")
-        setdelButton(false)
-
-    }
-
-
-
-
-
-    return (
-        <div className="loader">
-            {
-                loading ? <ScaleLoader
-                    color={"#B6AB1D"}
-                    loading={loading}
-                    size={200}
-                /> :
-                    < div className="body">
-                        <div className='button_div'>
-                            <button className="logOutFunc" onClick={logOutButton}>LogOut</button>
-                        </div>
-                        <h1><span className="styling">TODO</span>LIST</h1>
-                        <form className="input_div" onSubmit={listOfItems}>
-                            <input className="input" type="text" maxLength="20" placeholder="What do you want to do?" onChange={itemEvent} value={inputList} />
-                            {
-                                toggleSubmit ? <button type="submit" className="addButton" > <VscAdd /> </button> :
-                                    <button className="editButton" onClick={() => updateButton(items[updateKey].inputList)}>Update</button>
-
+  return (
+    <div className="loader">
+      {loading ? (
+        <ScaleLoader color={"#B6AB1D"} loading={loading} size={200} />
+      ) : (
+        uid && (
+          <div className="body">
+            <div className="button_div">
+              <button className="logOutFunc" onClick={logOutButton}>
+                LogOut
+              </button>
+            </div>
+            <h1>
+              <span className="styling">TODO</span>LIST
+            </h1>
+            <form className="input_div" onSubmit={listOfItems}>
+              <input
+                className="input"
+                type="text"
+                maxLength="20"
+                placeholder="What do you want to do?"
+                onChange={itemEvent}
+                value={inputList}
+              />
+              {toggleSubmit ? (
+                <button type="submit" className="addButton">
+                  {" "}
+                  <VscAdd />{" "}
+                </button>
+              ) : (
+                <button
+                  className="editButton"
+                  onClick={() => updateButton(items[updateKey].inputList)}
+                >
+                  Update
+                </button>
+              )}
+            </form>
+            <span className="span1">{error}</span>
+            <div className="container">
+              <ol>
+                {!!Object.keys(items).length &&
+                  Object.keys(items).map((chabi) => {
+                    return (
+                      <li>
+                        <div className="item">
+                          <div className="item_input">
+                            {items[chabi].inputList}
+                          </div>
+                          <button
+                            className="editButton"
+                            onClick={() =>
+                              editButton(chabi, items[chabi].inputList)
                             }
-
-                        </form>
-                        <div className="container">
-                            <ol>
-                                {!!Object.keys(items).length && Object.keys(items).map((chabi) => {
-                                    return <li >
-                                        <div className="item">
-                                            <div className="item_input"   >{items[chabi].inputList}</div>
-                                            < button className="editButton" onClick={() => editButton(chabi,
-                                                items[chabi].inputList
-                                            )}>EDIT</button>
-                                            <button className="removeButton" disabled={delButton} onClick={() => removeButton(chabi)}>DELETE</button>
-                                        </div>
-                                    </li>
-                                })}
-                            </ol>
-
-
+                          >
+                            EDIT
+                          </button>
+                          <button
+                            className="removeButton"
+                            disabled={delButton}
+                            onClick={() => removeButton(chabi)}
+                          >
+                            DELETE
+                          </button>
                         </div>
-                    </div>
-            }
-
-        </div >
-    );
+                      </li>
+                    );
+                  })}
+              </ol>
+            </div>
+          </div>
+        )
+      )}
+    </div>
+  );
 }
 
 export default TodoList;

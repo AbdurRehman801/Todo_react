@@ -6,6 +6,7 @@
 .loginbody{
     background-color: black;
     height: 100vh;
+
 }
 .styling2{
     font-weight: 800;
@@ -37,12 +38,12 @@ h2{
     margin: 0.25rem;
     border-radius: 25px;
   }
-  .mail_div2{
-    display: flex;
+   .mail_div2{
+     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
-  }
+    text-align: center; 
+  } 
   
   .mail_div2 .mail2{
     padding:0.5rem 1rem;
@@ -110,9 +111,14 @@ h6{
   color: white;
   font-weight: 800;
 }
+.errordiv1{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
 .error1{
   color: red;
-  margin-left: 470px;
   display: inline;
 }
 .error2{
@@ -120,14 +126,21 @@ h6{
   display: inline;
   margin-left: 70px;
 }
+.errordiv3{
+  display: flex;
+  margin-left: 750px;
+}
+
 .error3{
   color: red;
-  margin-left: 470px;
   display: inline;
+}
+.errordiv4{
+  display: flex;
+  margin-left: 750px;
 }
 .error4{
   color: red;
-  margin-left: 470px;
   display: inline;
 }
 .error8{

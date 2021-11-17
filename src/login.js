@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import {Link, Redirect } from "react-router-dom";
 import "./login.css"
 import { useHistory } from "react-router-dom";
 import { auth, database } from "./firebase";
 import validation from "./validation";
 import ScaleLoader from "react-spinners/ScaleLoader";
+import { findAllByDisplayValue } from "@testing-library/dom";
 
 
 
@@ -19,11 +20,11 @@ const Login = () => {
 
     const history = useHistory();
 
-    useEffect(async () => {
-
-        await auth.onAuthStateChanged(user => {
+    useEffect( () => {
+         return auth.onAuthStateChanged(user => {
             if (user) {
                 history.push("/")
+                
             }
 
         })
