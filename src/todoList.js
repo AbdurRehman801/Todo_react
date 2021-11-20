@@ -1,9 +1,17 @@
 import react, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "./App.css";
 import { auth, database, firebase } from "./firebase";
 import { useHistory } from "react-router-dom";
 import ScaleLoader from "react-spinners/ScaleLoader";
 import { VscAdd } from "react-icons/vsc";
+import { BiLogOut } from "react-icons/bi";
+import todo from "./redux/reducer/data";
+import { todoDatas } from "./redux/reducer/action";
+// import { todoDatas } from "./redux/reducer/action/index";
+
+
+
 
 function TodoList(props) {
   const [uid, setUid] = useState();
@@ -14,24 +22,27 @@ function TodoList(props) {
   const [delButton, setdelButton] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
-
+  const selector = useSelector((state)=> state.todo);
+  const reduxdata = useSelector((state)=>state.status)
+  const dispatch = useDispatch();
+  console.log("state===>", reduxdata)
   const history = useHistory();
   useEffect(() => {
-    setLoading(true);
+    // setLoading(true);
     return auth.onAuthStateChanged((user) => {
       if (user) {
         setUid(user.uid);
-        setLoading(false);
+        // setLoading(false);
       } else {
-        history.push("/login");
-        setLoading(false);
+        history.push("/Login");
+        // setLoading(false);
       }
     });
   }, []);
 
   const logOutButton = () => {
     auth.signOut();
-    history.push("/login");
+    history.push("/Login");
   };
   const itemEvent = (event) => {
     setInputList(event.target.value);
@@ -43,6 +54,14 @@ function TodoList(props) {
 
     if (inputList) {
       const todoRef = database.ref("/Todo/" + uid);
+      // dispatch({ todo: inputList})
+      dispatch(
+        todoDatas({
+          items: inputList
+        })
+      )
+
+
       const todo = {
         inputList,
       };
@@ -62,7 +81,7 @@ function TodoList(props) {
         setLoading(false);
       } else {
         setItems([]);
-        setLoading(false);
+        setLoading(false);   
       }
     });
   }, [uid]);
@@ -88,15 +107,12 @@ function TodoList(props) {
   };
 
   return (
-    <div className="loader">
-      {loading ? (
-        <ScaleLoader color={"#B6AB1D"} loading={loading} size={200} />
-      ) : (
-        uid && (
-          <div className="body">
+          <div className={reduxdata.role==="Student" ?"studentbody": reduxdata.role==="Company" ? "companybody" : reduxdata.role==="Admin"? "adminbody": null}>
+    
+              <>
             <div className="button_div">
               <button className="logOutFunc" onClick={logOutButton}>
-                LogOut
+              <BiLogOut/> Logout
               </button>
             </div>
             <h1>
@@ -125,8 +141,16 @@ function TodoList(props) {
                 </button>
               )}
             </form>
+            <div className="spani">
             <span className="span1">{error}</span>
+            </div>
             <div className="container">
+            {loading ? <div className="loader">
+            <ScaleLoader
+                            color={"#BFFF00"}
+                            loading={loading}
+                             />
+              </div>:
               <ol>
                 {!!Object.keys(items).length &&
                   Object.keys(items).map((chabi) => {
@@ -156,12 +180,12 @@ function TodoList(props) {
                     );
                   })}
               </ol>
+              }
             </div>
+            </>
+              
           </div>
         )
-      )}
-    </div>
-  );
 }
 
 export default TodoList;

@@ -4,3 +4,9 @@ export const isLoggedIn = (data) => {
         payload: data
     }
 };
+export const todoDatas = (todoData) =>{
+    return{
+        type: "TODO",
+        payload: todoData
+    }
+};

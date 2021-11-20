@@ -128,7 +128,7 @@ h6{
 }
 .errordiv3{
   display: flex;
-  margin-left: 750px;
+  justify-content: center;
 }
 
 .error3{
@@ -137,7 +137,7 @@ h6{
 }
 .errordiv4{
   display: flex;
-  margin-left: 750px;
+  justify-content: center ;
 }
 .error4{
   color: red;
@@ -146,4 +146,20 @@ h6{
 .error8{
   color: red;
   text-align: center;
+}
+.radioDiv{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.radio1{
+  color: #fff;
+  margin-right: 40px;
+}
+.radio2{
+  color: #fff;
+  margin-right: 40px;
+}
+.radio3{
+  color: #fff;
 }

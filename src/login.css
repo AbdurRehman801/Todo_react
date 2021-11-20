@@ -90,15 +90,22 @@ h2{
 }
 .error5{
   color: red;
-  margin-left: 740px;
-  display: inline;
+  text-align: center;
 }
 .error6{
   color: red;
-  margin-left: 740px;
-  display: inline;
+  text-align: center;
 }
 .error7{
   color: red;
   text-align: center;
+}
+.loader2{
+  text-align: center;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
 }

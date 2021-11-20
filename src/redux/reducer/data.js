@@ -1,21 +1,18 @@
-const data = {
-    email:"",
-    name:"",
-    role:"",
-};
+const todoData = {
+    items :[]
+}
 
-const status = (state = data, action) => {
+const todo = (state = todoData, action) => {
     switch (action?.type) {
-        case 'STATUS':
+        case 'TODO':
             return {
                 ...state,
                 ...action.payload
             }
-
 
         default:
             return state;
     }
 };
 
-export default status;
+export default todo;

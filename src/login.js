@@ -5,7 +5,8 @@ import { useHistory } from "react-router-dom";
 import { auth, database } from "./firebase";
 import validation from "./validation";
 import ScaleLoader from "react-spinners/ScaleLoader";
-import { findAllByDisplayValue } from "@testing-library/dom";
+import { BiLogIn } from "react-icons/bi";
+
 
 
 
@@ -15,16 +16,21 @@ const Login = () => {
         password: ""
     })
     const [errors, setErrors] = useState({})
-    let [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [errmessage, seterrmessage] = useState()
+    const [rule, setRule] = useState("")
 
     const history = useHistory();
 
     useEffect( () => {
+        setLoading(true)
          return auth.onAuthStateChanged(user => {
             if (user) {
                 history.push("/")
-                
+                setLoading(false)
+            }else if(user===null){
+                history.push("./Login")
+                setLoading(false)
             }
 
         })
@@ -42,9 +48,16 @@ const Login = () => {
         e.preventDefault();
         setErrors(validation(values));
         setLoading(true)
-        await auth.signInWithEmailAndPassword(values.email, values.password).then((res) => {
-            history.push("/")
-            setLoading(false)
+        await auth.signInWithEmailAndPassword(values.email, values.password).then(async(res) => {
+            console.log("res===>", res.user.uid)
+           await database.ref("/USR").child("/users" + "/" + res.user.uid)
+            .once("value").then((snapshot)=>{
+                console.log("snapshot===>", snapshot.val())
+                const roles = snapshot.val();
+                setRule(roles.role)
+                history.push("/")
+                setLoading(false)
+            } )
         }).catch((err) => {
             // alert(err.message)
             seterrmessage(err.message)
@@ -54,6 +67,13 @@ const Login = () => {
     }
     return (
         <div className="loginbody">
+            {
+                loading ? <div className="loader2">
+                    <ScaleLoader
+                            color={"#BFFF00"}
+                            loading={loading} />
+                </div> :
+                <> 
             <h1 className="styling1">Welcome to Todo List</h1>
             <h2 >Please Login!!</h2>
             <form onSubmit={(e) => handleSubmit(e)}>
@@ -67,12 +87,12 @@ const Login = () => {
                 {errors.password && <p className="error6">{errors.password}</p>}
                 <div className="button_div1">
 
-                    <button type="submit" className="loginButton">{
-                        loading ? <ScaleLoader
-                            color={"#0D0DAF"}
-                            loading={loading}
-                            height={"13"} /> :
-                            "LOGIN"}</button>
+                    <button type="submit" className="loginButton">
+                        {
+                            loading ? <ScaleLoader
+                            color={"#BFFF00"}
+                            loading={loading} /> : "Login"
+                        }</button>
                 </div>
                 <p className="error7">{errmessage}</p>
             </form >
@@ -80,6 +100,8 @@ const Login = () => {
 
                 <p className="para1">Don't have account Please!! <Link to="/signUp">SignUp </Link> </p>
             </div>
+            </>
+            }
         </div>
     )
 }

@@ -8,29 +8,44 @@
   background-color: black;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: right;
   width: 100%;
   height: 100vh;
 }
-.body{
+.studentbody{
   height: 100vh;
-  background-color: black;
-  
+  background-color:#190742;
 }
+.companybody{
+  height: 100vh;
+  background-color: #6e141b;
+}
+.adminbody{
+  height: 100vh;
+  background-color: #541329;
+}
+
 .button_div{
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-end;
+  align-items: right;
   text-align: center;
 }
 .logOutFunc{
-  font-size: 1.4rem;
-  margin: 0 0.5rem;
-  background: none;
-  outline: none;
-  color: red;
-  border: 2px solid white;
+  margin-top: 10px;
+  background-color: white  ;
+  border: none;
+  color: black;
+  padding: 15px 40px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 40px;
   cursor: pointer;
+}
+.logOutFunc:hover{
+  background-color: lime;
 }
 h1{
   font-size:3rem;
@@ -83,7 +98,7 @@ h1{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: center;
+  text-align: left;
   margin-top: 2rem;
 }
 
@@ -125,6 +140,10 @@ h1{
 .modal{
   position: absolute;
   top: 0;
+}
+.spani{
+  display: flex;
+  justify-content: center;
 }
 .span1{
   color: red;

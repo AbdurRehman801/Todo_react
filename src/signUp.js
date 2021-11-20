@@ -5,6 +5,10 @@ import { useHistory } from "react-router-dom";
 import { auth, database } from "./firebase";
 import validation from "./validation";
 import ScaleLoader from "react-spinners/ScaleLoader";
+import { useDispatch, useSelector } from "react-redux";
+import { isLoggedIn } from "./redux/reducer/action";
+import status from "./redux/reducer/login";
+
 
 
 
@@ -15,9 +19,12 @@ const SignUp = () => {
         email: "",
         password: ""
     })
+    const dispatch = useDispatch();
     const [errors, setErrors] = useState({})
-    let [loading, setLoading] = useState(false);
-    const [mass, setMass] = useState()
+    const [loading, setLoading] = useState(false);
+    const [mass, setMass] = useState();
+    const [role, setRole]= useState("");
+
 
     const handleChange = (e) => {
         setErrors(validation(values));
@@ -39,9 +46,16 @@ const SignUp = () => {
                     .set({
                         email: values.email,
                         name: values.firstName,
-                        uid: auth.currentUser.uid
+                        uid: auth.currentUser.uid,
+                        role: role
                     }).then(() => console.log("user added successfully")).catch((err) => console.log(err))
+                    console.log(role)
                 setLoading(false)
+                dispatch(isLoggedIn({
+                    email: values.email,
+                    name: values.firstName,
+                    role:role
+                }))
             })
             .catch((err) => {
                 // alert(err.message)
@@ -61,6 +75,14 @@ const SignUp = () => {
                 <div className="errordiv1">
                 {errors.firstName && <p className="error1">{errors.firstName}</p>}  {errors.lastName && <p className="error2">{errors.lastName}</p>}
                 </div>
+                <div className = "radioDiv">
+                <input type="radio" id="std" name="age" value="Student" onClick={()=>setRole("Student")}  />
+                <label className = "radio1" for="std">Student</label>
+                <input type="radio" id="comp" name="age" value="Company" onClick={()=>setRole("Company")} />
+                <label className="radio2" for="comp">Company</label>
+                <input type="radio" id="admin" name="age" value="Admin"  onClick={()=>setRole("Admin")}/>
+                <label className="radio3" for="comp">Admin</label>
+              </div>
                 <div className="mail_div2">
                     <input className="mail2" maxLength="30" type="text" placeholder="Email" onChange={handleChange} value={values.email} name="email" />
                 </div>
