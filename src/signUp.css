@@ -1,165 +1,205 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-.loginbody{
-    background-color: black;
-    height: 100vh;
-
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-.styling2{
-    font-weight: 800;
-    color: lime;
+.loginbody {
+  background-color: #190742;
+  height: 100vh;
 }
-h2{
-    margin-top: 20px;
-    font-weight: 600;
-    color: white;
-    text-align: center;
+.styling2 {
+  font-weight: 800;
+  color: lime;
 }
-
-.name_div{
-    margin-top: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
-  
-  .name_div .input{
-    padding:0.5rem 1rem;
-    height: 50px;
-    outline: none;
-    border: none;
-    background-color: #fff;
-    width: 220px;
-    font-size: 1.15rem;
-    margin: 0.25rem;
-    border-radius: 25px;
-  }
-   .mail_div2{
-     display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center; 
-  } 
-  
-  .mail_div2 .mail2{
-    padding:0.5rem 1rem;
-    height: 50px;
-    outline: none;
-    border: none;
-    background-color: #fff;
-    width: 450px;
-    font-size: 1.15rem;
-    margin: 0.25rem;
-    border-radius: 25px;
-  }
-  .pass_div{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
-  
-  .pass_div .pass{
-    padding:0.5rem 1rem;
-    height: 50px;
-    outline: none;
-    border: none;
-    background-color: #fff;
-    width: 450px;
-    font-size: 1.15rem;
-    margin: 0.25rem;
-    border-radius: 25px;
-  }
-  .buttons_div{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
-  .signButton {
-    margin-top: 20px;
-    background-color: white;
-    border: none;
-    color: black;
-    padding: 15px 100px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    border-radius: 40px;
-    cursor: pointer;
-  }
-  .signButton:hover{
-    background-color: lime;      
-}
-h6{
-  color: red;
+h2 {
+  margin-top: 20px;
+  font-weight: 600;
+  color: white;
   text-align: center;
 }
-.para_div2{
+
+.name_div {
+  margin-top: 40px;
+
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
 }
-.para_div2 .para2{
+
+.name_div .input {
+  padding: 0.5rem 1rem;
+  height: 50px;
+  outline: none;
+  border: none;
+  background-color: #fff;
+  width: 220px;
+  font-size: 1.15rem;
+  margin: 0.25rem;
+  border-radius: 25px;
+}
+.mail_div2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.mail_div2 .mail2 {
+  padding: 0.5rem 1rem;
+  height: 50px;
+  outline: none;
+  border: none;
+  background-color: #fff;
+  width: 450px;
+  font-size: 1.15rem;
+  margin: 0.25rem;
+  border-radius: 25px;
+}
+.pass_div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.pass_div .pass {
+  padding: 0.5rem 1rem;
+  height: 50px;
+  outline: none;
+  border: none;
+  background-color: #fff;
+  width: 450px;
+  font-size: 1.15rem;
+  margin: 0.25rem;
+  border-radius: 25px;
+}
+.date_div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.dt_lb {
+  color: white;
+  font-size: 1.15rem;
+}
+.dated_div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.dated_div .dated {
+  padding: 0.5rem 1rem;
+  height: 50px;
+  outline: none;
+  border: none;
+  background-color: #fff;
+  width: 450px;
+  font-size: 1.15rem;
+  margin: 0.25rem;
+  border-radius: 25px;
+}
+.buttons_div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.signButton {
+  margin-top: 20px;
+  background-color: white;
+  border: none;
+  color: black;
+  padding: 15px 100px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 40px;
+  cursor: pointer;
+}
+.signButton:hover {
+  background-color: lime;
+}
+h6 {
+  color: red;
+  text-align: center;
+}
+.para_div2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.para_div2 .para2 {
   margin-top: 20px;
   color: white;
   font-weight: 800;
 }
-.errordiv1{
+.errordiv1 {
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
 }
-.error1{
+.error1 {
   color: red;
   display: inline;
 }
-.error2{
+.error2 {
   color: red;
   display: inline;
   margin-left: 70px;
 }
-.errordiv3{
+.errordiv3 {
   display: flex;
   justify-content: center;
 }
 
-.error3{
+.error3 {
   color: red;
   display: inline;
 }
-.errordiv4{
+.errordiv4 {
   display: flex;
-  justify-content: center ;
+  justify-content: center;
 }
-.error4{
+.error4 {
   color: red;
   display: inline;
 }
-.error8{
+.error8 {
   color: red;
   text-align: center;
 }
-.radioDiv{
+.radioDiv {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.radio1{
+.radio1 {
   color: #fff;
   margin-right: 40px;
 }
-.radio2{
+.radio2 {
   color: #fff;
   margin-right: 40px;
 }
-.radio3{
+.radio3 {
+  color: #fff;
+}
+.genderDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.radio4 {
+  color: #fff;
+  margin-right: 40px;
+}
+.radio5 {
   color: #fff;
 }

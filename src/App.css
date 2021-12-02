@@ -3,37 +3,21 @@
   padding: 0;
   box-sizing: border-box;
 }
-.loader{
-  text-align: center;
-  background-color: black;
-  display: flex;
-  justify-content: center;
-  align-items: right;
-  width: 100%;
+.body {
   height: 100vh;
-}
-.studentbody{
-  height: 100vh;
-  background-color:#190742;
-}
-.companybody{
-  height: 100vh;
-  background-color: #6e141b;
-}
-.adminbody{
-  height: 100vh;
-  background-color: #541329;
+  background-color: #190742;
+  overflow: auto;
 }
 
-.button_div{
+.button_div {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: right;
   text-align: center;
 }
-.logOutFunc{
+.logOutFunc {
   margin-top: 10px;
-  background-color: white  ;
+  background-color: white;
   border: none;
   color: black;
   padding: 15px 40px;
@@ -44,30 +28,43 @@
   border-radius: 40px;
   cursor: pointer;
 }
-.logOutFunc:hover{
+.logOutFunc:hover {
   background-color: lime;
 }
-h1{
-  font-size:3rem;
+.profileButton {
+  margin-top: 10px;
+  background-color: white;
+  border: none;
+  color: black;
+  padding: 15px 40px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 40px;
+  cursor: pointer;
+}
+h1 {
+  font-size: 3rem;
   font-weight: 50;
   margin: 1rem, 0 3rem;
   text-align: center;
   color: #fff;
 }
 
-.styling{
+.styling {
   font-weight: 800;
   color: lime;
 }
-.input_div{
+.input_div {
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
 }
 
-.input_div .input{
-  padding:0.5rem 1rem;
+.input_div .input {
+  padding: 0.5rem 1rem;
   height: 50px;
   outline: none;
   border: none;
@@ -77,7 +74,7 @@ h1{
   margin: 0.25rem;
   border-radius: 25px;
 }
-.addButton{
+.addButton {
   height: 50px;
   width: 50px;
   border-radius: 25px;
@@ -90,10 +87,10 @@ h1{
   cursor: pointer;
 }
 
-.addButton:hover{
+.addButton:hover {
   opacity: 0.7;
 }
-.container{
+.container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -102,14 +99,14 @@ h1{
   margin-top: 2rem;
 }
 
-.item{
+.item {
   padding: 0.5rem;
   margin-bottom: 1.5rem;
   border-bottom: 4px solid #fff;
   display: flex;
 }
 
-.item_input{
+.item_input {
   background: none;
   outline: none;
   color: #fff;
@@ -118,7 +115,7 @@ h1{
   font-size: 1.4rem;
 }
 
-.editButton{
+.editButton {
   font-size: 1.4rem;
   margin: 0 0.5rem;
   background: none;
@@ -128,23 +125,23 @@ h1{
   cursor: pointer;
 }
 
-.removeButton{
+.removeButton {
   font-size: 1.4rem;
   margin: 0 0.5rem;
   background: none;
   outline: none;
-  color: #E00;
+  color: #e00;
   border: none;
   cursor: pointer;
 }
-.modal{
+.modal {
   position: absolute;
   top: 0;
 }
-.spani{
+.spani {
   display: flex;
   justify-content: center;
 }
-.span1{
+.span1 {
   color: red;
 }

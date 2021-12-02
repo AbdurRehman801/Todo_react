@@ -14,3 +14,9 @@
     border-radius: 15px;
     padding: 10px 10px;
 }
+.errorbody{
+    height: 100vh;
+  background-color: #190742;
+
+    overflow: auto;
+}

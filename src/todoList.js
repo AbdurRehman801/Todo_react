@@ -8,7 +8,9 @@ import { VscAdd } from "react-icons/vsc";
 import { BiLogOut } from "react-icons/bi";
 import todo from "./redux/reducer/data";
 import { todoDatas } from "./redux/reducer/action";
-// import { todoDatas } from "./redux/reducer/action/index";
+import { CgProfile } from "react-icons/cg";
+import { isLoggedIn } from "./redux/reducer/action";
+import Profile from "./Profile";
 
 
 
@@ -28,14 +30,11 @@ function TodoList(props) {
   console.log("state===>", reduxdata)
   const history = useHistory();
   useEffect(() => {
-    // setLoading(true);
     return auth.onAuthStateChanged((user) => {
       if (user) {
         setUid(user.uid);
-        // setLoading(false);
       } else {
         history.push("/Login");
-        // setLoading(false);
       }
     });
   }, []);
@@ -83,6 +82,9 @@ function TodoList(props) {
         setItems([]);
         setLoading(false);   
       }
+      dispatch(isLoggedIn({
+        uid: uid,
+    }))
     });
   }, [uid]);
   const removeButton = (userkey) => {
@@ -107,12 +109,15 @@ function TodoList(props) {
   };
 
   return (
-          <div className={reduxdata.role==="Student" ?"studentbody": reduxdata.role==="Company" ? "companybody" : reduxdata.role==="Admin"? "adminbody": null}>
+          <div className="body">
     
               <>
             <div className="button_div">
               <button className="logOutFunc" onClick={logOutButton}>
               <BiLogOut/> Logout
+              </button>
+              <button className="profileButton" onClick={()=>history.push('./Profile')} >
+               <CgProfile/>Profile
               </button>
             </div>
             <h1>
@@ -145,7 +150,7 @@ function TodoList(props) {
             <span className="span1">{error}</span>
             </div>
             <div className="container">
-            {loading ? <div className="loader">
+            {loading ? <div>
             <ScaleLoader
                             color={"#BFFF00"}
                             loading={loading}

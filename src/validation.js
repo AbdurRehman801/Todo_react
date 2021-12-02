@@ -20,8 +20,75 @@ const validation = (values) => {
     } else if (values.password.length > 10) {
         errors.password = "Password must be less than 10 character"
     }
-
-    
+    if (!values.currentPassword || values.currentPassword === "") {
+        errors.currentPassword = "Password is Required"
+    } else if (values.currentPassword?.length < 6) {
+        errors.currentPassword = "Password must be more than 6 character"
+    } else if (values.currentPassword?.length > 10) {
+        errors.currentPassword = "Password must be less than 10 character"
+    }
+    if (!values.newPassword || values.newPassword === "") {
+        errors.newPassword = "Password is Required"
+    } else if (values.newPassword?.length < 6) {
+        errors.newPassword = "Password must be more than 6 character"
+    } else if (values.newPassword?.length > 10) {
+        errors.newPassword = "Password must be less than 10 character"
+    }
+    if (!values.companyName || values.companyName===""){
+        errors.companyName = "This field is Required"
+    }
+    if (!values.email || values.email === "") {
+        errors.email = "Email is Required"
+    } else if (!/\S+@\S+\.\S+/.test(values.email)) {
+        errors.email = "Email is invalid"
+    }
+    if (!values.vacancies || values.vacancies){
+        errors.vacancies = "This Field is required"
+    }
+    if (!values.dateOfApply || values.dateOfApply){
+        errors.dateOfApply = "This Field is required"
+    }
+    if (!values.experience || values.experience===""){
+        errors.experience = "This Field is Required"
+    }
+    if (!values.skills || values.skills===""){
+        errors.skills = "This Field is Required"
+    }
+    if (!values.jobType || values.jobType===""){
+        errors.jobType = "This Field is Required"
+    }
+    if (!values.description || values.description===""){
+        errors.description = "This Field is Required"
+    }
+    if (!values.companyName || values.companyName===""){
+        errors.companyName = "This field is Required"
+    }
+    if (!values.email || values.email === "") {
+        errors.email = "Email is Required"
+    } else if (!/\S+@\S+\.\S+/.test(values.email)) {
+        errors.email = "Email is invalid"
+    }
+    if (!values.vacancies || values.vacancies===""){
+        errors.vacancies = "This Field is required"
+    }
+    if (!values.dateOfApply || values.dateOfApply===""){
+        errors.dateOfApply = "This Field is required"
+    }
+    if (!values.experience || values.experience===""){
+        errors.experience = "This Field is Required"
+    }
+    if (!values.skills || values.skills===""){
+        errors.skills = "This Field is Required"
+    }
+    if (!values.jobType || values.jobType===""){
+        errors.jobType = "This Field is Required"
+    }
+    if (!values.description || values.description===""){
+        errors.description = "This Field is Required"
+    }
     return errors;
 }
 export default validation;
+
+
+    

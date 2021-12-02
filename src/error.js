@@ -4,7 +4,7 @@ import "./error.css"
 
 const Error = () =>{
     return(
-        <div>
+        <div className="errorbody">
         <h1>Oopss! Page Not Found!!</h1>
         <div className="errorDiv">
         <Link to="/Login" className="linkError">Go Back to Home Page</Link>

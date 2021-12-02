@@ -6,6 +6,7 @@ import { auth, database } from "./firebase";
 import validation from "./validation";
 import ScaleLoader from "react-spinners/ScaleLoader";
 import { BiLogIn } from "react-icons/bi";
+import ForgetPassword from "./ForgetPassword"
 
 
 
@@ -55,11 +56,15 @@ const Login = () => {
                 console.log("snapshot===>", snapshot.val())
                 const roles = snapshot.val();
                 setRule(roles.role)
-                history.push("/")
+                if (roles.role === "Student") {
+                    history.push("/student")
+                  }
+                  else if (roles.role === "Company") {
+                    history.push("/Company")
+                  }
                 setLoading(false)
             } )
         }).catch((err) => {
-            // alert(err.message)
             seterrmessage(err.message)
             setLoading(false)
         })
@@ -78,7 +83,7 @@ const Login = () => {
             <h2 >Please Login!!</h2>
             <form onSubmit={(e) => handleSubmit(e)}>
                 <div className="input1_div1">
-                    <input className="input1" type="text" placeholder="Email" onChange={handleChange} value={values.email} name="email" />
+                    <input className="input1" type="email" placeholder="Email" onChange={handleChange} value={values.email} name="email" />
                 </div>
                 {errors.email && <p className="error5">{errors.email}</p>}
                 <div className="inputs_div1">
@@ -96,6 +101,9 @@ const Login = () => {
                 </div>
                 <p className="error7">{errmessage}</p>
             </form >
+            <div className = "forget_link">
+                <Link to="/ForgetPassword"> Forget Password?</Link>
+            </div>
             <div className="para_div1">
 
                 <p className="para1">Don't have account Please!! <Link to="/signUp">SignUp </Link> </p>

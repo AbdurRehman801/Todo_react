@@ -1,7 +1,12 @@
 const data = {
     email:"",
-    name:"",
+    firstname:"",
+    lastname: "",
     role:"",
+    uid:"",
+    gender: "",
+    dateofbirth:"",
+
 };
 
 const status = (state = data, action) => {

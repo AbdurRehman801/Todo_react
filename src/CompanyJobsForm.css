@@ -1,0 +1,83 @@
+.modal_for_form{
+    border-radius: 50px;
+  padding: 15px 20px;
+
+}
+.companyformerror1 {
+  display: flex;
+  justify-content: flex-start;
+
+
+}
+.companyformerror2 {
+  display: flex;
+  justify-content: flex-start;
+
+}
+.companyformerror3 {
+  display: flex;
+  justify-content: flex-start;
+
+  
+}
+.companyformerror4 {
+  display: flex;
+  justify-content: flex-start;
+
+  
+}
+.companyformerror5 {
+  display: flex;
+  justify-content: flex-start;
+
+
+}
+.companyformerror6 {
+  display: flex;
+  justify-content: flex-start;
+
+
+}
+.companyformerror7 {
+  display: flex;
+  justify-content: flex-start;
+
+  
+}
+.companyformerror8 {
+  display: flex;
+  justify-content: flex-start;
+
+
+}
+.companyformerror9 {
+  display: flex;
+  justify-content: flex-start;
+}
+.companyerror1{
+  color: red;
+}
+.companyerror2{
+  color: red;
+}
+.companyerror3{
+  color: red;
+}
+.companyerror4{
+  color: red;
+}
+.companyerror5{
+  color: red;
+}
+.companyerror6{
+  color: red;
+}
+.companyerror7{
+  color: red;
+}
+.companyerror8{
+  color: red;
+}
+.companyerror9{
+  color: red;
+}

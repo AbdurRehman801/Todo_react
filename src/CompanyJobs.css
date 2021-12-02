@@ -1,0 +1,138 @@
+.companyjob_body {
+  background-color: #190742;
+  height: 100vh;
+  position: relative;
+  display: flex;
+}
+.companyjob_show {
+  background-color: white;
+  width: 25%;
+  height: 80%;
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  margin-right: 20px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding-left: 10px;
+}
+.companyjob_add_div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  float: right;
+  height: 25%;
+  width: 25%;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+.companyname {
+  margin-top: 6px;
+  height: 6vh;
+  background-color: #190742;
+  width: 98%;
+  border-radius: 10px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.companyemail {
+  margin-top: 6px;
+  height: 6vh;
+  background-color: #190742;
+  width: 98%;
+  border-radius: 10px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.companywebsite {
+  margin-top: 6px;
+  height: 6vh;
+  background-color: #190742;
+  width: 98%;
+  border-radius: 10px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.companyvacancies {
+  margin-top: 6px;
+  height: 6vh;
+  background-color: #190742;
+  width: 98%;
+  border-radius: 10px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.companydate {
+  margin-top: 6px;
+  height: 6vh;
+  background-color: #190742;
+  width: 98%;
+  border-radius: 10px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.companyexperience {
+  margin-top: 6px;
+  height: 6vh;
+  background-color: #190742;
+  width: 98%;
+  border-radius: 10px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.companyskills {
+  margin-top: 6px;
+  height: 6vh;
+  background-color: #190742;
+  width: 98%;
+  border-radius: 10px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.companyjobtype {
+  margin-top: 6px;
+  height: 6vh;
+  background-color: #190742;
+  width: 98%;
+  border-radius: 10px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.companydescription {
+  margin-top: 6px;
+  height: 6vh;
+  background-color: #190742;
+  width: 98%;
+  border-radius: 10px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.companyjobloader{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+
+}

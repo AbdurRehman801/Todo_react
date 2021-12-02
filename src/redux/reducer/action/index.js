@@ -10,3 +10,9 @@ export const todoDatas = (todoData) =>{
         payload: todoData
     }
 };
+export const jobsDatas = (jobsData) =>{
+    return{
+        type: "JOBS",
+        payload: jobsData
+    }
+};
