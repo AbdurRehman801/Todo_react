@@ -86,6 +86,26 @@ const validation = (values) => {
     if (!values.description || values.description===""){
         errors.description = "This Field is Required"
     }
+    if (!values.fullName || values.fullName===""){
+        errors.fullName = "This Field is Required"
+    }
+    if (!values.fatherName || values.fatherName===""){
+        errors.fatherName = "This Field is Required"
+    }
+    if (!values.address || values.address===""){
+        errors.address = "This Field is Required"
+    }
+    if (!values.qualification || values.qualification===""){
+        errors.qualification = "This Field is Required"
+    }
+    if (!values.phoneNumber || values.phoneNumber===""){
+        errors.phoneNumber = "This Field is Required"
+    }else if (values.newPassword?.length < 3000000000) {
+        errors.newPassword = "Please Type Correct Format"
+    } else if (values.newPassword?.length > 4999999999) {
+        errors.newPassword = "Please Type Correct Format"
+    }
+
     return errors;
 }
 export default validation;

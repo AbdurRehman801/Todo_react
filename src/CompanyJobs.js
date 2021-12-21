@@ -12,16 +12,16 @@ const CompanyJobs = () => {
   const [array, setArray] = useState({});
   const arr = [];
   const [loading, setLoading] = useState(false);
-  const [datakey, setDataKey]= useState()
-  const dispatch = useDispatch()
+  const [datakey, setDataKey] = useState();
+  const dispatch = useDispatch();
 
   const reduxdata = useSelector((state) => state.status);
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
     if (reduxdata.uid) {
       var starCountRef = database
         .ref("/CompanyJobs")
-        .child("/" + reduxdata.uid);
+        .child("/" + reduxdata.uid );
       starCountRef.on("value", (snapshot) => {
         const data = snapshot.val();
         console.log("data=====>", data);
@@ -30,32 +30,27 @@ const CompanyJobs = () => {
           Object.values(data).map((value1, index1) => {
             value1["pushKey"] = Object.keys(data)[index1];
             arr.push(value1);
-            setDataKey(value1.pushKey)
+            setDataKey(value1.pushKey);
           });
-          dispatch(
-            jobsDatas({
-              companyName: "",
-              email: "",
-              website: "",
-              vancancies: "",
-              dateOfApply: "",
-              experience: "",
-              skills: "",
-              jobType: "",
-              description: "",
-            })
+        dispatch(
+          jobsDatas(
+            data,
           )
+        );
       });
-      setLoading(false)
+      setLoading(false);
     }
   }, [reduxdata.uid]);
-
+  const jubile = useSelector((state) => state);
+  console.log(jubile);
+  console.log(array);
   return (
     <div className="companyjob_body">
       {loading ? (
-       <div className="companyjobloader"> 
-        <ScaleLoader color={"#BFFF00"} loading={loading} />
-        </div> ) : (
+        <div className="companyjobloader">
+          <ScaleLoader color={"#BFFF00"} loading={loading} />
+        </div>
+      ) : (
         Object.values(array).map((value3, index3) => {
           console.log(value3, "database");
           return (
@@ -96,11 +91,11 @@ const CompanyJobs = () => {
                 <div>Description:</div>
                 <div>{value3.description}</div>
               </div>
-              <CompanyJobsFormUpdate formValue={value3} pushKey={datakey}/>
+              <CompanyJobsFormUpdate formValue={value3} pushKey={datakey} />
             </div>
           );
         })
-        )}
+      )}
 
       <div className="companyjob_add_div">
         <CompanyJobsForm />

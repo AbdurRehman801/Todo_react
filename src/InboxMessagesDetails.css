@@ -1,0 +1,118 @@
+.IMD_body {
+    background-color: #190742;
+    height: 100vh;
+    overflow: auto;
+  }
+  .IMD_top {
+    background-image: url(/src/images/job\ header.png);
+    background-repeat: no-repeat;
+    background-size: cover  ;
+    background-position: top;
+    height: 20vh;
+    width: 100%;
+    background-color: white;
+    padding: 120px 0 100px;
+  }
+  .IMD_detail_div{
+    display: flex;
+    height: 80vh;
+    width: 100%;
+  }
+  .IMD_detail{
+    margin-top: 10px;
+      height: 80vh;
+      width: 50%;
+      margin-left: 100px;
+      background-color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      overflow: auto;
+  }
+  .IMD_deatil_CN_div{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    height: 12vh;
+    width: 100%;
+    border-radius: 20px;
+    padding-left: 20px;
+  }
+  .IMD_CN_title{
+    width: 40%;
+    color: #190742;
+    font-size: 20px;
+    border-radius: 20px;
+    padding: 4px 4px;
+  }
+  .IMD_time_div{
+    height: 80vh;
+    width: 50%;
+    background-color: white;
+    margin-top: 10px;
+    margin-right: 100px;
+    overflow: auto;
+  }
+  .image_div_parent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30vh;
+    width: 100%;
+  }
+  .image_div{
+    background-image: url(/src/images/dummy\ 6.jpg);
+    border-radius: 1000px !important;
+    width: 220px;
+    height: 220px;
+    border: 5px solid black;
+    display: flex;
+    justify-content: center;
+  }
+  .jobType_div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+    width: 100%;
+  }
+  .jobType_show{
+    background-color: #190742;
+    border-radius: 20px;
+    padding: 10px 30px;
+    color: white;
+  }
+  .IMD_detail_div2{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+  }
+  .apply_button_div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .apply_button{
+    background-color: #190742;
+    color: white;
+    border-radius: 20px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+  }
+  ul li{
+    color: #190742;
+    font-size: 17px;
+    margin-left: 40px;
+  }
+  .time{
+    color: #190742;
+    margin-left: 40px;
+    font-size: 20px;
+  }
+  .IMD_CN_name{
+    color: #190742;
+    font-size: 20px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin-left: 40px;
+  }

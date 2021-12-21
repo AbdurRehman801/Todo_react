@@ -1,10 +1,10 @@
-const jobsData = {
+const apply = {
   
 }
 
-const jobForm = (state = jobsData, action) => {
+const AppliedJob = (state = apply, action) => {
     switch (action?.type) {
-        case 'JOBS':
+        case 'APPLYJOB':
             return {
                 ...state,
                 ...action.payload
@@ -15,4 +15,4 @@ const jobForm = (state = jobsData, action) => {
     }
 };
 
-export default jobForm;
+export default AppliedJob;

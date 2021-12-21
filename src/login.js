@@ -57,7 +57,7 @@ const Login = () => {
                 const roles = snapshot.val();
                 setRule(roles.role)
                 if (roles.role === "Student") {
-                    history.push("/student")
+                    history.push("/Student")
                   }
                   else if (roles.role === "Company") {
                     history.push("/Company")

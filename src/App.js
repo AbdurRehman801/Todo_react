@@ -21,10 +21,25 @@ import ForgetPassword from "./ForgetPassword";
 import Company from "./Company";
 import StudentProfileForCompany from "./StudentProfileForCompany";
 import CompanyJobs from "./CompanyJobs";
+import Student from "./Student";
+import Vacancies from "./Vacancies";
+import { jobsDatas } from "./redux/reducer/action";
+import jobForm from "./redux/reducer/CompanyJobsForm";
+import VacanciesDetail from "./VacanciesDetail";
+import AppliedJobs from "./AppliedJobs";
+import InboxMessagesOfStudents from "./InboxMessagesOfStudents";
+import InboxMessagesDetails from "./InboxMessagesDetails";
 
 function App() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [userID, setUserID]= useState()
+  const [key, setKey]= useState()
+  const reduxdorm = useSelector((state)=> state.status)
+  console.log(reduxdorm)
+  const forID = useSelector((state)=> state.jobForm)
+  console.log(forID, "ID")
+
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -65,6 +80,33 @@ function App() {
       }
     });
   }, []);
+  useEffect(() => {
+      var starCountRef = database
+        .ref("/CompanyJobs")
+        .child("/");
+      starCountRef.on("value", (snapshot) => {
+        const data = snapshot.val();
+        console.log("data=====>", data);
+        dispatch(
+          jobsDatas(
+            data,
+          )
+        );
+      });
+  }, [reduxdorm.uid]);
+  useEffect(()=>{
+    Object.values(forID).map((value,index)=>{
+      console.log(value, "appvalue")
+      Object.values(value).map((value1, index1)=>{
+        console.log(value1, 'appvalue2')
+        setUserID(value1.userID)
+        setKey(value1.id)
+
+      })
+    })
+  }, [])
+  // console.log(userID)
+  // console.log(key)
   return (
     <div>
       {loading ? (
@@ -76,7 +118,7 @@ function App() {
           {user ? (
             <>
               <Switch>
-                {/* <Route exact path="/" component={TodoList} /> */}
+                <Route exact path="/" component={TodoList} />
                 <Route path="/Profile" component={Profile} />
                 <Route path="/ChangePassword" component={ChangePassword} />
                 <Route path="/Company" component={Company} />
@@ -85,6 +127,11 @@ function App() {
                   path="/StudentProfileCompany"
                   component={StudentProfileForCompany}
                 />
+                <Route path="/InboxMessagesOfStudents/:id" component={InboxMessagesOfStudents}/>
+                <Route path="/Student" component = {Student}/>
+                <Route path="/Vacancies" component={Vacancies}/>
+                <Route path="/VacanciesDetail/:id" component={VacanciesDetail}/>
+                <Route path="/InboxMessagesDetails/:applicantsID" component={InboxMessagesDetails}/>
               </Switch>
             </>
           ) : (

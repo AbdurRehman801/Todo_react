@@ -1,6 +1,27 @@
 .companyCardbottons{
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     margin-top: 20px;
+}
+.updateButton{
+    background-color: blue;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 20px;
+    color: white;
+}
+.deleteButton{
+    background-color: red;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 20px;
+    color: white;
+}
+.inboxButton{
+    background-color: yellow;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 20px;
+    color: black;
 }
