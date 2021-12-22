@@ -213,7 +213,7 @@ const SignUp = () => {
       </form>
       <div className="para_div2">
         <p className="para2">
-          Go Back to Login!!! <Link to="/Login">Login </Link>{" "}
+          Go Back to Login!!! <Link to="/">Login </Link>{" "}
         </p>
       </div>
     </div>

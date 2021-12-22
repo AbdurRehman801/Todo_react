@@ -27,10 +27,15 @@ const Login = () => {
         setLoading(true)
          return auth.onAuthStateChanged(user => {
             if (user) {
-                history.push("/")
+                if (rule === "Student") {
+                    history.push("/Student")
+                  }
+                  else if (rule === "Company") {
+                    history.push("/Company")
+                  }
                 setLoading(false)
             }else if(user===null){
-                history.push("./Login")
+                history.push("/")
                 setLoading(false)
             }
 

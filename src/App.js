@@ -118,7 +118,7 @@ function App() {
           {user ? (
             <>
               <Switch>
-                <Route exact path="/" component={TodoList} />
+                {/* <Route exact path="/" component={TodoList} /> */}
                 <Route path="/Profile" component={Profile} />
                 <Route path="/ChangePassword" component={ChangePassword} />
                 <Route path="/Company" component={Company} />
@@ -137,7 +137,7 @@ function App() {
           ) : (
             <>
               <Switch>
-                <Route exact path="/Login" component={Login} />
+                <Route exact path="/" component={Login} />
                 <Route path="/SignUp" component={SignUp} />
                 <Route path="/ForgetPassword" component={ForgetPassword} />
                 <Route path="*">

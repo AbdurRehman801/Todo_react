@@ -13,7 +13,7 @@ const Student = () =>{
       auth
         .signOut()
         .then(() => {
-          history.push("/Login");
+          history.push("/");
         })
         .catch((error) => {});
     };
