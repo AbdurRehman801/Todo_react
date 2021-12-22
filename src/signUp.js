@@ -39,7 +39,12 @@ const SignUp = () => {
     auth
       .createUserWithEmailAndPassword(values.email, values.password)
       .then(() => {
-        history.push("/");
+        if (role === "Student") {
+          history.push("/Student")
+        }
+        else if (role === "Company") {
+          history.push("/Company")
+        }
         database
           .ref("/USR")
           .child("/users" + "/" + auth.currentUser.uid)
