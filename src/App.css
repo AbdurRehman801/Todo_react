@@ -144,7 +144,7 @@ h1 {
   color: red;
 }
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 600px) {
   .logOutFunc {
     padding: 5px 20px;
   }

@@ -181,7 +181,7 @@
   justify-content: center;
   margin-bottom: 10px;
 }
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 600px) {
   .info_div{
     width: 95%;
   }
