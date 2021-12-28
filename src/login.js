@@ -28,14 +28,14 @@ const Login = () => {
          return auth.onAuthStateChanged(user => {
             if (user) {
                 if (rule === "Student") {
-                    history.push("/Student")
+                    history.push("/")
                   }
                   else if (rule === "Company") {
-                    history.push("/Company")
+                    history.push("/")
                   }
                 setLoading(false)
             }else if(user===null){
-                history.push("/")
+                history.push("/Login")
                 setLoading(false)
             }
 
@@ -62,10 +62,10 @@ const Login = () => {
                 const roles = snapshot.val();
                 setRule(roles.role)
                 if (roles.role === "Student") {
-                    history.push("/Student")
+                    history.push("/")
                   }
                   else if (roles.role === "Company") {
-                    history.push("/Company")
+                    history.push("/")
                   }
                 setLoading(false)
             } )

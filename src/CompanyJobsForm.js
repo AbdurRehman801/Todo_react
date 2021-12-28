@@ -324,20 +324,20 @@ const CompanyJobsForm = (props) => {
           skills: values.skills,
           jobType: values.jobType,
           description: values.description,
-          userID: reduxdata.uid
+          userID: reduxdata.uid,
         })
 
-        .then((res) =>{
-        console.log(res, "res") 
-        database
-        .ref("/CompanyJobs")
-        .child("/" + reduxdata.uid + "/" + res.key)
-        .update({
-        id: res.key
+        .then((res) => {
+          console.log(res, "res");
+          database
+            .ref("/CompanyJobs")
+            .child("/" + reduxdata.uid + "/" + res.key)
+            .update({
+              id: res.key,
+            });
 
+          alert("Job Posted");
         })
-
-        alert("Job Posted")})
         .catch((err) => alert(err.message));
     }
   };
@@ -355,9 +355,9 @@ const CompanyJobsForm = (props) => {
       >
         <IoAddSharp size={20} />
       </button>
-      <PureModal width = "520px"
+      <PureModal
+        width="520px"
         header="Job Form"
-   
         isOpen={modal}
         closeButton="X"
         closeButtonPosition="bottom"
@@ -379,6 +379,7 @@ const CompanyJobsForm = (props) => {
             <FormGroup>
               <Label for="Company Name">Company Name</Label>
               <Input
+                maxLength="20"
                 type="text"
                 name="companyName"
                 value={values.companyName}
@@ -394,6 +395,7 @@ const CompanyJobsForm = (props) => {
             <FormGroup>
               <Label for="exampleEmail">Email</Label>
               <Input
+                maxLength="20"
                 type="email"
                 name="email"
                 value={values.email}
@@ -407,6 +409,7 @@ const CompanyJobsForm = (props) => {
             <FormGroup>
               <Label for="Website">Website</Label>
               <Input
+                maxLength="20"
                 type="url"
                 name="website"
                 value={values.website}
@@ -468,6 +471,7 @@ const CompanyJobsForm = (props) => {
             <FormGroup>
               <Label for="Skills">Skills</Label>
               <Input
+                maxLength="20"
                 type="text"
                 name="skills"
                 value={values.skills}
@@ -500,6 +504,7 @@ const CompanyJobsForm = (props) => {
             <FormGroup>
               <Label for="Description">Description</Label>
               <Input
+                maxLength="35"
                 type="textarea"
                 name="description"
                 value={values.description}

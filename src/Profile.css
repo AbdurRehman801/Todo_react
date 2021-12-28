@@ -181,3 +181,14 @@
   justify-content: center;
   margin-bottom: 10px;
 }
+@media screen and (max-width: 375px) {
+  .info_div{
+    width: 95%;
+  }
+  .image_div{
+    margin-left: 75px;
+  }
+  .uploadButtondiv{
+    margin-top: 10px;
+  }
+}

@@ -40,10 +40,10 @@ const SignUp = () => {
       .createUserWithEmailAndPassword(values.email, values.password)
       .then(() => {
         if (role === "Student") {
-          history.push("/Student")
+          history.push("/")
         }
         else if (role === "Company") {
-          history.push("/Company")
+          history.push("/")
         }
         database
           .ref("/USR")
@@ -218,7 +218,7 @@ const SignUp = () => {
       </form>
       <div className="para_div2">
         <p className="para2">
-          Go Back to Login!!! <Link to="/">Login </Link>{" "}
+          Go Back to Login!!! <Link to="/Login">Login </Link>{" "}
         </p>
       </div>
     </div>

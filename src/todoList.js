@@ -53,7 +53,6 @@ function TodoList(props) {
 
     if (inputList) {
       const todoRef = database.ref("/Todo/" + uid);
-      // dispatch({ todo: inputList})
       dispatch(
         todoDatas({
           items: inputList

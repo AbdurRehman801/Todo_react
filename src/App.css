@@ -80,8 +80,6 @@ h1 {
   border-radius: 25px;
   outline: none;
   border: none;
-  /* background-color: #fff; */
-  /* color: #fff; */
   margin: 0.25rem;
   background-color: lime;
   cursor: pointer;
@@ -144,4 +142,26 @@ h1 {
 }
 .span1 {
   color: red;
+}
+
+@media screen and (max-width: 375px) {
+  .logOutFunc {
+    padding: 5px 20px;
+  }
+  .profileButton {
+    padding: 5px 20px;
+  }
+  .addButton{
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+  }
+  .input_div .input{
+    width: 300px;
+    height: 40px;
+  }
+  .item_input{
+    width: 160px;
+  }
+
 }
