@@ -1,11 +1,5 @@
 const data = {
-    email:"",
-    firstname:"",
-    lastname: "",
-    role:"",
-    uid:"",
-    gender: "",
-    dateofbirth:"",
+
 
 };
 

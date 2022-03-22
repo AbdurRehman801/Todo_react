@@ -272,9 +272,10 @@ import { Form, FormGroup, Label, Input, FormText } from "reactstrap";
 
 const CompanyJobsForm = (props) => {
   const [modal, setModal] = useState(false);
+  const reduxdata = useSelector((state) => state.status);
   const [values, setValues] = useState({
-    companyName: "",
-    email: "",
+    companyName: reduxdata.firstname+reduxdata.lastname,
+    email: reduxdata.email,
     website: "",
     vancancies: "",
     dateOfApply: "",
@@ -285,7 +286,6 @@ const CompanyJobsForm = (props) => {
   });
   const [errors, setErrors] = useState({});
 
-  const reduxdata = useSelector((state) => state.status);
   const dispatch = useDispatch();
   // console.log(reduxdata);
   const inputEvent = (e) => {
@@ -297,9 +297,7 @@ const CompanyJobsForm = (props) => {
   };
   const onSubmits = (e) => {
     e.preventDefault();
-    if (
-      !values.companyName ||
-      !values.email ||
+    if (  
       !values.website ||
       !values.vancancies ||
       !values.dateOfApply ||
@@ -385,13 +383,10 @@ const CompanyJobsForm = (props) => {
                 value={values.companyName}
                 placeholder="Company Name"
                 onChange={inputEvent}
+                disabled
               />
             </FormGroup>
-            <div className="companyformerror1">
-              {errors.companyName && (
-                <p className="companyerror1">{errors.companyName}</p>
-              )}
-            </div>
+           
             <FormGroup>
               <Label for="exampleEmail">Email</Label>
               <Input
@@ -401,15 +396,14 @@ const CompanyJobsForm = (props) => {
                 value={values.email}
                 placeholder="Email"
                 onChange={inputEvent}
+                disabled
               />
             </FormGroup>
-            <div className="companyformerror2">
-              {errors.email && <p className="companyerror2">{errors.email}</p>}
-            </div>
+        
             <FormGroup>
               <Label for="Website">Website</Label>
               <Input
-                maxLength="20"
+                maxLength="25"
                 type="url"
                 name="website"
                 value={values.website}
@@ -425,6 +419,7 @@ const CompanyJobsForm = (props) => {
             <FormGroup>
               <Label for="Number">Number of Vacancies</Label>
               <Input
+              min="0"
                 type="number"
                 name="vancancies"
                 value={values.vancancies}

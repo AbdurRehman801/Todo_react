@@ -40,10 +40,10 @@ const SignUp = () => {
       .createUserWithEmailAndPassword(values.email, values.password)
       .then(() => {
         if (role === "Student") {
-          history.push("/")
+          history.push("/Student")
         }
         else if (role === "Company") {
-          history.push("/")
+          history.push("/Company")
         }
         database
           .ref("/USR")
@@ -129,16 +129,6 @@ const SignUp = () => {
           <label className="radio2" for="comp">
             Company
           </label>
-          <input
-            type="radio"
-            id="admin"
-            name="age"
-            value="Admin"
-            onClick={() => setRole("Admin")}
-          />
-          <label className="radio3" for="comp">
-            Admin
-          </label>
         </div>
         <div className="mail_div2">
           <input
@@ -218,7 +208,7 @@ const SignUp = () => {
       </form>
       <div className="para_div2">
         <p className="para2">
-          Go Back to Login!!! <Link to="/Login">Login </Link>{" "}
+          Go Back to Login!!! <Link to="/">Login </Link>{" "}
         </p>
       </div>
     </div>

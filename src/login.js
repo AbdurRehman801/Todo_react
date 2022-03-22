@@ -26,16 +26,17 @@ const Login = () => {
     useEffect( () => {
         setLoading(true)
          return auth.onAuthStateChanged(user => {
+             console.log(user, "kljjjk")
             if (user) {
                 if (rule === "Student") {
-                    history.push("/")
+                    history.push("/Student")
                   }
                   else if (rule === "Company") {
-                    history.push("/")
+                    history.push("/Company")
                   }
                 setLoading(false)
             }else if(user===null){
-                history.push("/Login")
+                history.push("/")
                 setLoading(false)
             }
 
@@ -62,10 +63,10 @@ const Login = () => {
                 const roles = snapshot.val();
                 setRule(roles.role)
                 if (roles.role === "Student") {
-                    history.push("/")
+                    history.push("/Student")
                   }
                   else if (roles.role === "Company") {
-                    history.push("/")
+                    history.push("/Company")
                   }
                 setLoading(false)
             } )

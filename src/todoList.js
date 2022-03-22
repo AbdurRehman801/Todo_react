@@ -34,14 +34,14 @@ function TodoList(props) {
       if (user) {
         setUid(user.uid);
       } else {
-        history.push("/Login");
+        history.push("/");
       }
     });
   }, []);
 
   const logOutButton = () => {
     auth.signOut();
-    history.push("/Login");
+    history.push("/");
   };
   const itemEvent = (event) => {
     setInputList(event.target.value);

@@ -76,6 +76,7 @@ const Profile = () => {
   return (
     <div className="profile_body">
       <div className="info_div">
+        <div className="image_div_parent">
         <div className="image_div">
           <div className="circle">
             <img src={array.url} className="image" />
@@ -96,6 +97,7 @@ const Profile = () => {
           <button onClick={uploadChange} className="uploadButton">
             Upload Picture
           </button>
+        </div>
         </div>
         <div className="profile_div">
           <div className="profile_detail">

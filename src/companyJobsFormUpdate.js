@@ -285,10 +285,9 @@ import PureModal from "react-pure-modal";
 import "react-pure-modal/dist/react-pure-modal.min.css";
 import { useHistory } from "react-router-dom";
 
-
 const CompanyJobsFormUpdate = (props) => {
   const [modal, setModal] = useState(false);
-    const [values, setValues] = useState({
+  const [values, setValues] = useState({
     companyName: "",
     email: "",
     website: "",
@@ -347,17 +346,16 @@ const CompanyJobsFormUpdate = (props) => {
   };
   useEffect(() => {
     setValues(props.formValue);
-}
-    , []);
-    const deleted = () =>{
-      database
+  }, []);
+  const deleted = () => {
+    database
       .ref("/CompanyJobs")
-        .child("/" + reduxdata.uid + "/" + props.pushKey)
-        .remove()
-  }
-  const inboxed = ()=>{
-    history.push("/InboxMessagesOfStudents/"+props?.formValue?.id)
-  }
+      .child("/" + reduxdata.uid + "/" + props.pushKey)
+      .remove();
+  };
+  const inboxed = () => {
+    history.push("/InboxMessagesOfStudents/" + props?.formValue?.id);
+  };
   const awain = useSelector((state) => state);
   // console.log(awain)
 
@@ -365,14 +363,19 @@ const CompanyJobsFormUpdate = (props) => {
   return (
     <div>
       <div className="companyCardbottons">
-      <button className="updateButton" onClick={() => setModal(true)}>Update</button>
-      <button className="inboxButton" onClick={inboxed} >Inbox</button>
-      <button className="deleteButton" onClick={deleted} >Delete</button>
-      
+        <button className="updateButton" onClick={() => setModal(true)}>
+          Update
+        </button>
+        <button className="inboxButton" onClick={inboxed}>
+          Inbox
+        </button>
+        <button className="deleteButton" onClick={deleted}>
+          Delete
+        </button>
       </div>
-      <PureModal width = "520px"
+      <PureModal
+        width="520px"
         header="Update Form"
-   
         isOpen={modal}
         closeButton="X"
         closeButtonPosition="bottom"
@@ -381,7 +384,7 @@ const CompanyJobsFormUpdate = (props) => {
           return true;
         }}
       >
-        <Form  onSubmit={onSubmits}>
+        <Form onSubmit={onSubmits}>
           <fieldset>
             <legend
               style={{
@@ -394,34 +397,31 @@ const CompanyJobsFormUpdate = (props) => {
             <FormGroup>
               <Label for="Company Name">Company Name</Label>
               <Input
+                maxLength="20"
                 type="text"
                 name="companyName"
                 value={values.companyName}
                 placeholder="Company Name"
                 onChange={inputEvent}
+                disabled
               />
             </FormGroup>
-            <div className="companyformerror1">
-              {errors.companyName && (
-                <p className="companyerror1">{errors.companyName}</p>
-              )}
-            </div>
             <FormGroup>
               <Label for="exampleEmail">Email</Label>
               <Input
+                maxLength="20"
                 type="email"
                 name="email"
                 value={values.email}
                 placeholder="Email"
                 onChange={inputEvent}
+                disabled
               />
             </FormGroup>
-            <div className="companyformerror2">
-              {errors.email && <p className="companyerror2">{errors.email}</p>}
-            </div>
             <FormGroup>
               <Label for="Website">Website</Label>
               <Input
+                maxLength="20"
                 type="url"
                 name="website"
                 value={values.website}
@@ -437,6 +437,7 @@ const CompanyJobsFormUpdate = (props) => {
             <FormGroup>
               <Label for="Number">Number of Vacancies</Label>
               <Input
+                min="0"
                 type="number"
                 name="vancancies"
                 value={values.vancancies}
@@ -483,6 +484,7 @@ const CompanyJobsFormUpdate = (props) => {
             <FormGroup>
               <Label for="Skills">Skills</Label>
               <Input
+                maxLength="20"
                 type="text"
                 name="skills"
                 value={values.skills}
@@ -515,6 +517,7 @@ const CompanyJobsFormUpdate = (props) => {
             <FormGroup>
               <Label for="Description">Description</Label>
               <Input
+                maxLength="35"
                 type="textarea"
                 name="description"
                 value={values.description}
@@ -527,7 +530,7 @@ const CompanyJobsFormUpdate = (props) => {
               )}
             </div>
             <Button color="primary" size="lg" block type="submit">
-                Update
+              Update
             </Button>
           </fieldset>
         </Form>

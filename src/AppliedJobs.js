@@ -12,8 +12,9 @@ import { Apply } from "./redux/reducer/action";
 const AppliedJobs = ({userID, yellow}) => {
   const [modal, setModal] = useState(false);
   const [errors, setErrors] = useState({});
+  const select = useSelector((state) => state.status);
   const [values, setValues] = useState({
-    fullName: "",
+    fullName: select.firstname+select.lastname,
     fatherName: "",
     address: "",
     qualification: "",
@@ -31,7 +32,6 @@ const AppliedJobs = ({userID, yellow}) => {
       [e.target.name]: e.target.value,
     });
   };
-  const select = useSelector((state) => state.status);
   // console.log(select);
   const forKey = useSelector((state) => state.jobForm);
   
@@ -129,6 +129,7 @@ const AppliedJobs = ({userID, yellow}) => {
                 value={values.fullName}
                 placeholder="Full Name"
                 onChange={inputEvent}
+                disabled
                 maxLength="20"
               />
             </FormGroup>

@@ -7,6 +7,8 @@ import { isLoggedIn } from "./redux/reducer/action";
 import status from "./redux/reducer/login";
 import ChangePassword from "./ChangePassword";
 import { Link } from "react-router-dom";
+import PureModal from 'react-pure-modal';
+import 'react-pure-modal/dist/react-pure-modal.min.css';
 
 const Update = (props) => {
   console.log(props, "pppppp");
@@ -21,6 +23,14 @@ const Update = (props) => {
   });
   const reduxdata = useSelector((state) => state.status);
   const dispatch = useDispatch();
+  const [modal, setModal] = useState(false);
+const style ={
+  backgroundColor: "blue",
+  padding: "10px 15px",
+  border: "none",
+  borderRadius: "20px",
+  color: "white",
+}
 
   const onSubmits = (event) => {
     event.preventDefault();
@@ -64,27 +74,22 @@ const Update = (props) => {
 
   const { buttonLabel, className, datas } = props;
 
-  const [modal, setModal] = useState(false);
-  const [nestedModal, setNestedModal] = useState(false);
-  const [closeAll, setCloseAll] = useState(false);
 
-  const toggle = () => setModal(!modal);
-  const toggleNested = () => {
-    setNestedModal(!nestedModal);
-    setCloseAll(false);
-  };
-  const toggleAll = () => {
-    setNestedModal(!nestedModal);
-    setCloseAll(true);
-  };
   return (
     <div>
-      <Button color="primary" onClick={toggle}>
-        {buttonLabel}Update
-      </Button>
-      <Modal isOpen={modal} toggle={toggle} className={className}>
-        <ModalHeader toggle={toggle}>Update form</ModalHeader>
-        <ModalBody>
+      <button style={style} onClick={() => setModal(true)}>Update</button>
+     <PureModal
+        width="520px"
+
+  isOpen={modal}
+  closeButton="X"
+  closeButtonPosition="bottom"
+  onClose={() => {
+    setModal(false);
+    return true;
+  }}
+>
+  
           <Form onSubmit={onSubmits}>
             <fieldset>
               <legend
@@ -164,8 +169,8 @@ const Update = (props) => {
             </fieldset>
           </Form>
           <br />
-        </ModalBody>
-      </Modal>
+</PureModal>;
+  
     </div>
   );
 };
